@@ -42,8 +42,8 @@ class Dropper:
             self.serial = serial
             print("Dropper serial: " + self.serial)
 
-    def send(self, topic: str, payload: str):
-        self.mqttClient.publish(topic, payload)
+    def send(self, topic: str, payload: str, qos: int = 0, retain: bool = False):
+        self.mqttClient.publish(topic, payload, qos, retain)
         self.messagesCount += 1
 
     def report(self, event: DropperEvent):
@@ -54,7 +54,7 @@ class Dropper:
             "doses": self.cycles,
             "event": event.value,
         })
-        self.send("Dropper/" + self.serial + "/report", jsonEvent)
+        self.send("Dropper/" + self.serial + "/report", jsonEvent, 1)
 
     def handDropCycleEvent(self):
         self.report(DropperEvent.DELIVERY_REQUEST)

@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "dropper and paperscent simulators"
 authors = ["Nathan Schwarz <nathan.schwarz97@gmail.com>"]
 readme = "README.md"
+packages = [{include = "simulator"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -15,4 +16,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-dev = "simulator:main"
+dev = "simulator.main:main"

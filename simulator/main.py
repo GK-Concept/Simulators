@@ -15,6 +15,7 @@ class Simulator:
         self.droppers = []
         self.mqttClient = mqtt.Client()
         self.mqttClient.connect(config["MQTT_HOST"], int(config["MQTT_PORT"]), 60)
+        self.mqttClient.loop_start()
 
     def initDroppers(self):
         if (config["DROPPER_RUN"] == "true"):
@@ -31,6 +32,7 @@ class Simulator:
         for dropper in self.droppers:
             dropper.cleanup()
         self.isRunning = False
+        self.mqttClient.loop_stop()
         sys.exit(0)
 
     def run(self):
@@ -44,5 +46,3 @@ class Simulator:
 def main():
     simulator = Simulator()
     simulator.run()
-
-
