@@ -2,8 +2,7 @@ import paho.mqtt.client as mqtt
 import json
 from enum import Enum
 from typing import Optional
-import os
-import binascii
+from secrets import token_hex
 import random
 from threading import Timer
 
@@ -26,7 +25,7 @@ class Dropper:
 
     @staticmethod
     def generateSerial():
-        return "GKDP-" + binascii.b2a_hex(os.urandom(6)).upper().decode()[:1]
+        return "GKDP-" + token_hex(12).upper()
 
     def cleanup(self):
         if (self.timer is not None):
@@ -40,7 +39,7 @@ class Dropper:
             if not serial.startswith("GKDP-"):
                 raise ValueError("Dropper serial must start with GKDP-")
             self.serial = serial
-            print("Dropper serial: " + self.serial)
+            print(f"Dropper serial: {self.serial}")
 
     def send(self, topic: str, payload: str, qos: int = 0, retain: bool = False):
         self.mqttClient.publish(topic, payload, qos, retain)
@@ -58,8 +57,8 @@ class Dropper:
 
     def handDropCycleEvent(self):
         self.report(DropperEvent.DELIVERY_REQUEST)
-        if (self.timer is not None):
-            print("Dropper {self.serial} Canceling timer")
-            self.timer.cancel()
         self.timer = Timer(random.uniform(0.5, 3.0), self.report, [DropperEvent.DELIVERED])
         self.timer.start()
+
+    def isAvailable(self):
+        return self.timer is None or not self.timer.is_alive()

@@ -41,8 +41,9 @@ class Simulator:
         signal.signal(signal.SIGINT, self.cleanup)
         while (self.isRunning):
             randomDropper = random.choice(self.droppers)
-            randomDropper.handDropCycleEvent()
-            time.sleep(1)
+            if (randomDropper.isAvailable()):
+                randomDropper.handDropCycleEvent()
+                time.sleep(2)
 
 def main():
     simulator = Simulator()
