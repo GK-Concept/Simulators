@@ -33,7 +33,7 @@ a basic .env exemple
 `DROPPER_RUN`: the simulator will generate droppers events when this value is set to `"true"` \
 `DROPPER_SERIALS`: comma separated list of specifics droppers serials, if an empty list is provided, the simulator will generate 10 serials randomly. \
 `MQTT_HOST`: the mqtt broker url, if you're running it locally through the provided docker-compose then use `"localhost"` \
-`MQTT_PORT`: the port on which the mqtt broker runs (usualy `"1883"`). \
+`MQTT_PORT`: the port on which the mqtt broker runs (usualy `"1883"`).
 
 ```bash
 DROPPER_RUN="true"
