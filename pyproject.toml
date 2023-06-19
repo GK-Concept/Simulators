@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "simulators"
+version = "0.1.0"
+description = "dropper and paperscent simulators"
+authors = ["Nathan Schwarz <nathan.schwarz97@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+paho-mqtt = "^1.6.1"
+python-dotenv = "^1.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
