@@ -16,10 +16,11 @@ class Simulator:
         self.mqttClient = mqtt.Client()
         self.mqttClient.connect(config["MQTT_HOST"], int(config["MQTT_PORT"]), 60)
         self.mqttClient.loop_start()
+        self.initDroppers()
 
     def initDroppers(self):
         if (config["DROPPER_RUN"] == "true"):
-            dropperSerials = config["DROPPER_SERIALS"].split(",")
+            dropperSerials = [serial for serial in config["DROPPER_SERIALS"].split(",") if len(serial) > 0]
             if (len(dropperSerials) > 0):
                 for serial in dropperSerials:
                     self.droppers.append(Dropper(self.mqttClient, serial))
