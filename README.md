@@ -2,16 +2,28 @@
 
 dropper &amp; Paperscents simulators
 
+## current supported features
+
+### Dropper
+
+[X] random serial generation
+[X] can generate machine event reports
+[X] randomly push machine delivery events (delivery request event + delivered event)
+
+### Paperscent
+
+Not implemented yet
+
 ## prerequisites
 
 1. install python@^3.10 through a virtual environment
 2. install poetry with `pip3 install poetry`
-3. install docker
+3. install docker (optional)
 
 ## environment setup
 
 1. install project dependencies with `poetry install`
-2. setup the mqtt local broker with docker and docker-compose
+2. setup the mqtt local broker with docker and docker-compose (optional)
 3. setup the .env file at the project's root [see .env exemple here](##environment variables)
 
 ## environment variables
@@ -29,3 +41,8 @@ DROPPER_SERIALS=""
 MQTT_HOST="localhost"
 MQTT_PORT="1883"
 ```
+
+## run the simulator
+
+1. start the local broker with `docker-compose up -d` (optional)
+2. start the simulator with `poetry run dev`
