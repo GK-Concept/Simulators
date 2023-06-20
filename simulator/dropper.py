@@ -49,7 +49,7 @@ class Dropper:
         if (DropperEvent.DELIVERED == event):
             self.cycles += 1
         jsonEvent = json.dumps({
-            "cycle": self.cycles,
+            "cycles": self.cycles,
             "doses": self.cycles,
             "event": event.value,
         })
