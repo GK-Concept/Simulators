@@ -17,7 +17,7 @@ Not implemented yet
 ## prerequisites
 
 1. install python@^3.10 through a virtual environment
-2. install poetry with `pip3 install poetry`
+2. install dependencies with `pip3 install -r requirements.txt`
 3. install docker (optional)
 
 ## environment setup
@@ -33,6 +33,7 @@ a basic .env exemple
 `DROPPER_RUN`: the simulator will generate droppers events when this value is set to `"true"` \
 `DROPPER_SERIALS`: comma separated list of specifics droppers serials, if an empty list is provided, the simulator will generate 10 serials randomly. \
 `MQTT_HOST`: the mqtt broker url, if you're running it locally through the provided docker-compose then use `"localhost"` \
+`DROPPER_EVENTS_INTERVAL`: controls the time delay between generated random events \
 `MQTT_PORT`: the port on which the mqtt broker runs (usualy `"1883"`).
 
 ```bash

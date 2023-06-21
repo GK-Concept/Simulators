@@ -43,7 +43,7 @@ class Simulator:
             randomDropper = random.choice(self.droppers)
             if (randomDropper.isAvailable()):
                 randomDropper.handDropCycleEvent()
-                time.sleep(2)
+                time.sleep(int(config.get('DROPPER_EVENTS_INTERVAL', "2")))
 
 def main():
     simulator = Simulator()
