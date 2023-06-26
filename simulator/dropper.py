@@ -36,8 +36,6 @@ class Dropper:
         if (serial is None):
             self.serial = Dropper.generateSerial()
         else:
-            if not serial.startswith("GKDP-"):
-                raise ValueError("Dropper serial must start with GKDP-")
             self.serial = serial
             print(f"Dropper serial: {self.serial}")
 
